@@ -1,0 +1,18 @@
+<h1>Store : {{ store1.name }}</h1>
+<img *ngIf="!IsPurshased" src="{{store1.img }}" alt="">
+<div *ngIf="IsPurshased" class="container">
+  <p>Thank You</p>
+</div>
+<h1>Category: {{ ICategory.ID }}</h1>
+<button class="button bg-danger" (click)="handleBuyAction()">0</button>
+
+<div *ngFor="let product of ProductList" >
+  <p>Name {{ product.Name  }}</p>
+  <p>{{ product.Price }}</p>
+  <img src="{{ product.Img }}" alt="">
+  <!-- <img [src]=" product.Img " alt=""> -->
+
+</div>
+
+
+
