@@ -1,4 +1,6 @@
-<h1>Store : {{ store1.name }}</h1>
+<!-- Day 1 -->
+
+<!-- <h1>Store : {{ store1.name }}</h1>
 <img *ngIf="!IsPurshased" src="{{store1.img }}" alt="">
 <div *ngIf="IsPurshased" class="container">
   <p>Thank You</p>
@@ -10,9 +12,51 @@
   <p>Name {{ product.Name  }}</p>
   <p>{{ product.Price }}</p>
   <img src="{{ product.Img }}" alt="">
+
+</div> -->
+<!-- propertry binding  -->
   <!-- <img [src]=" product.Img " alt=""> -->
+
+
+
+
+<!-- Day 2 -->
+<div>
+  <label for="category">Select Category</label>
+  <select name="category" id="category" [(ngModel)]="ICategory">
+    <option *ngFor="let category of ICategory" [value]="category.Name">{{ category.Name }}</option>
+
+  </select>
+
+
+  <!-- <input type="text" className="form-control" name="category" id="category" [(ngModel)]="ICategory">
+  <h2>{{ ICategory }}</h2> -->
+
 
 </div>
 
+<table class="table">
+  <thead>
+    <tr >
+      <th scope="col">No.</th>
+      <th scope="col">Name</th>
+      <th scope="col">Img</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Price</th>
+      <th scope="col">Buy</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let prod of ProductList">
+      <td>{{ prod.ID }}</td>
+      <td>{{ prod.Name }}</td>
+      <td><img  [src]="prod.Img">
+      </td>
+      <td>{{ prod.Quantity }}</td>
+      <td>{{ prod.Price }}</td>
+      <td><button class="button bg-info" type="button" [disabled]="prod.Quantity==0">Buy</button>
+      </td>
+    </tr>
 
-
+  </tbody>
+</table>
