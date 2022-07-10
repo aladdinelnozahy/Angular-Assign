@@ -25,7 +25,7 @@ export class ContentComponent implements OnInit {
       {
         ID: 1,
         Name: 'fan',
-        Quantity: 5,
+        Quantity: 0,
         Price: 200,
         Img: 'https://fakeimg.pl/250x100',
         CategoryID: 1

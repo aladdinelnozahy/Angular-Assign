@@ -47,14 +47,15 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let prod of ProductList">
+    <tr *ngFor="let prod of ProductList " [hidden]="prod.Quantity==0"  [class.bg-danger]="prod.Quantity==1" [class.text-light]="prod.Quantity==1">
       <td>{{ prod.ID }}</td>
       <td>{{ prod.Name }}</td>
       <td><img  [src]="prod.Img">
       </td>
       <td>{{ prod.Quantity }}</td>
       <td>{{ prod.Price }}</td>
-      <td><button class="button bg-info" type="button" [disabled]="prod.Quantity==0">Buy</button>
+      <!-- <td><button class="button bg-info" type="button" [disabled]="prod.Quantity==0">Buy</button> -->
+      <td><button class="button bg-info" type="button">Buy</button>
       </td>
     </tr>
 
