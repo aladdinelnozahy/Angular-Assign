@@ -10,9 +10,9 @@ import { Store } from 'src/app/Models/store';
 })
 export class ContentComponent implements OnInit {
 
-
+todayDate:Date=new Date();
   ClientName: string = ""
-  store1 = new Store('Heba', 'https://fakeimg.pl/250x100', []);
+  store1 = new Store('H&M', 'https://fakeimg.pl/250x100', []);
   ProductList: IProduct[];
   IsPurshased: Boolean = false;
   // category:string="good";// test day 2
@@ -129,6 +129,9 @@ export class ContentComponent implements OnInit {
 
   }
 
+  tracking(index:number,item:IProduct){
+    return item.ID
+  }
   ngOnInit(): void {
 
   }

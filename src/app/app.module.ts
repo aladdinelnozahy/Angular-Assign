@@ -9,6 +9,7 @@ import { NavigationComponent } from './Components/navigation/navigation.componen
 import { IndexComponent } from './Components/index/index.component';
 import { ContentComponent } from './Components/content/content.component';
 import { FormsModule } from '@angular/forms';
+import { ProductCardDirective } from './Directives/product-card.directive';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { FormsModule } from '@angular/forms';
     FooterComponent,
     NavigationComponent,
     IndexComponent,
-    ContentComponent
+    ContentComponent,
+    ProductCardDirective
   ],
   imports: [
     BrowserModule,
