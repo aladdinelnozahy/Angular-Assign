@@ -7,10 +7,22 @@
 <!-- the ID of the category -->
 <!-- <p>{{ SelectedCatID }}</p> -->
 
+<div class="bg-info">
+  <h4>for test view child </h4>
+  <button class="btn btn-warning" (click)="getNewArrOfProd()">Get Products</button>
+</div>
 
 <!-- Child component -->
 <products [receivedCatID]="SelectedCatID" (totalPriceChanged)="onTotalPriceChanged($event)"></products>
 <div class="bg-success test">
   <!-- <p>{{ orderTotalPrice }}</p> -->
   <p>Total Prive:{{ recievedOrderTotalPrice }}</p>
+</div>
+
+<!-- test view child  -->
+
+<div>
+  <label for="">Client Name</label>
+  <!-- template ref (#clientName) -->
+  <input type="text" class="form-control" name="username" id="username" #clientName>
 </div>
