@@ -10,14 +10,17 @@ import { Store } from 'src/app/Models/store';
 })
 export class ContentComponent implements OnInit {
 
-todayDate:Date=new Date();
+  todayDate:Date=new Date();
+  prdListOfCat:IProduct[]=[];
+  receivedCatID:number=0
+
   ClientName: string = ""
   store1 = new Store('H&M', 'https://fakeimg.pl/250x100', []);
   ProductList: IProduct[];
   IsPurshased: Boolean = false;
-  // category:string="good";// test day 2
+  category:string="good";// test day 2
 
-  ICategory: ICategory[];
+  // ICategory: ICategory[];
   Discount: DiscountOffers = DiscountOffers['10%'];
 
   constructor() {
@@ -103,38 +106,47 @@ todayDate:Date=new Date();
         CategoryID: 5
       }
     ]
-    this.ICategory=
-    [
-      {
-        ID: 1,
-        Name: 'Electro'
-      },
-      {
-        ID: 2,
-        Name: 'vehicles'
-      },
-      {
-        ID: 3,
-        Name: 'clothes'
-      },
-      {
-        ID: 4,
-        Name: 'accessories'
-      },
-      {
-        ID: 5,
-        Name: 'baby'
-      }
-    ]
+    // this.ICategory=
+    // [
+    //   {
+    //     ID: 1,
+    //     Name: 'Electro'
+    //   },
+    //   {
+    //     ID: 2,
+    //     Name: 'vehicles'
+    //   },
+    //   {
+    //     ID: 3,
+    //     Name: 'clothes'
+    //   },
+    //   {
+    //     ID: 4,
+    //     Name: 'accessories'
+    //   },
+    //   {
+    //     ID: 5,
+    //     Name: 'baby'
+    //   }
+    // ]
 
   }
 
   tracking(index:number,item:IProduct){
     return item.ID
   }
-  ngOnInit(): void {
+  private getProductOfCat(){
+    if(this.receivedCatID==0){
+      this.prdListOfCat=Array.from(this.ProductList)
+      return;
+    }
+    this.prdListOfCat= this.ProductList.filter((product)=>product.CategoryID==this.receivedCatID);
 
   }
+  ngOnInit(): void {
+    this.getProductOfCat();
+  }
+
 
   handleBuyAction() {
 

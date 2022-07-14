@@ -1,16 +1,25 @@
-import { Directive, ElementRef, HostListener, Input } from '@angular/core';
+import { Directive, ElementRef, HostListener, Input, OnChanges, SimpleChanges } from '@angular/core';
 
 @Directive({
   selector: '[productCard]'
 })
-export class ProductCardDirective {
+export class ProductCardDirective implements OnChanges {
 
 
   @Input('productCard') BackgroundColor:string="yellow"
   @Input('productCard')  BackgroundColor2:string="blue"
   constructor(private elem:ElementRef) {
-    elem.nativeElement.style.borderRadius=`20px `
+    // elem.nativeElement.style.borderRadius=`20px `
   }
+
+
+  ngOnChanges(changes: SimpleChanges): void {
+    this.elem.nativeElement.style.borderRadius=`20px `
+    // console.log("hi")
+
+  }
+
+
   @HostListener('mouseover') onMouseover(){
     this.elem.nativeElement.style.boxShadow=` 10px 10px 50px 10px ${this.BackgroundColor} `
   }

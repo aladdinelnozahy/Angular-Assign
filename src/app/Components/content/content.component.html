@@ -1,4 +1,5 @@
-`<!-- Day 1 -->
+
+<!-- Day 1 -->
 
 <!-- <h1>Store : {{ store1.name }}</h1>
 <img *ngIf="!IsPurshased" src="{{store1.img }}" alt="">
@@ -15,29 +16,29 @@
 
 </div> -->
 <!-- propertry binding  -->
-  <!-- <img [src]=" product.Img " alt=""> -->
+<!-- <img [src]=" product.Img " alt=""> -->
 
 
 
 
 <!-- Day 2 -->
-<div>
+<!-- <div>
   <label for="category">Select Category</label>
   <select name="category" id="category" [(ngModel)]="ICategory">
     <option *ngFor="let category of ICategory" [value]="category.Name">{{ category.Name }}</option>
 
   </select>
-
+ -->
 
   <!-- <input type="text" className="form-control" name="category" id="category" [(ngModel)]="ICategory">
   <h2>{{ ICategory }}</h2> -->
 
 
-</div>
+<!-- </div> -->
 
 <table class="table">
   <thead>
-    <tr >
+    <tr>
       <th scope="col">No.</th>
       <th scope="col">Name</th>
       <th scope="col">Img</th>
@@ -47,38 +48,42 @@
     </tr>
   </thead>
   <tbody>
-    <ng-container *ngFor="let prod of ProductList,let i=index, trackBy:tracking "  >
-      <!-- using property binding -->
+    <!-- <ng-container *ngFor="let prod of ProductList,let i=index, trackBy:tracking "> -->
+      <!-- day 3 filter product by ID -->
+      <ng-container *ngFor="let prod of prdListOfCat ,let i=index, trackBy:tracking ">
+        <!-- using property binding -->
       <!-- [hidden]="prod.Quantity==0"     -->
-    <tr  *ngIf="prod.Quantity>0"  [class.bg-danger]="prod.Quantity==1" [class.text-light]="prod.Quantity==1" [style.background-color]="(prod.Quantity==3)?'lightyellow':'light'"  >
-      <td>{{ prod.ID }}</td>
-      <td>{{ prod.Name }}</td>
-      <td><img  [src]="prod.Img"></td>
-      <!-- <td>{{ prod.Quantity }}</td> -->
-      <td>
-        <span *ngIf="prod.Quantity>0">{{ prod.Quantity }}</span>
-        <span *ngIf="prod.Quantity==0">Out of Stock</span>
-      </td>
-      <td>{{ prod.Price | currency}}</td>
-      <!-- <td><button class="button bg-info" type="button" [disabled]="prod.Quantity==0">Buy</button> -->
-      <td><button class="button bg-info" type="button">Buy</button>
-      </td>
-    </tr>
+      <tr *ngIf="prod.Quantity>0" [class.bg-danger]="prod.Quantity==1" [class.text-light]="prod.Quantity==1"
+        [style.background-color]="(prod.Quantity==3)?'lightyellow':'light'">
+        <td>{{ prod.ID }}</td>
+        <td>{{ prod.Name }}</td>
+        <td><img [src]="prod.Img"></td>
+        <!-- <td>{{ prod.Quantity }}</td> -->
+        <td>
+          <span *ngIf="prod.Quantity>0">{{ prod.Quantity }}</span>
+          <span *ngIf="prod.Quantity==0">Out of Stock</span>
+        </td>
+        <td>{{ prod.Price | currency}}</td>
+        <!-- <td><button class="button bg-info" type="button" [disabled]="prod.Quantity==0">Buy</button> -->
+        <td><button class="button bg-info" type="button">Buy</button>
+        </td>
+      </tr>
 
-  </ng-container>
-  <div class="card m-5 p-2 text-center" productCard>
-    <img class="m-auto" src="../../../assets/—Pngtree—tree and roots logo_6977755.png" alt="" style="width: 200px;">
-
-    <div class="card-body">
-      <h5 class="card-title">Phone</h5>
-      <p class="card-text">their is nothing here </p>
-      <p class="card-text">Go home</p>
-      <a href="#" class="btn btn-primary">add to bag</a>
-    </div>
-  </div>
+    </ng-container>
   </tbody>
 
-  <div class="container">
-      <p>test date: <br><span >{{ todayDate }}</span> </p>
-  </div>
+
 </table>
+<div class="card m-5 p-2 text-center container " productCard>
+  <img class="m-auto" src="../../../assets/—Pngtree—tree and roots logo_6977755.png" alt="" style="width: 200px;">
+
+  <div class="card-body ">
+    <h5 class="card-title">Phone</h5>
+    <p class="card-text">their is nothing here </p>
+    <p class="card-text">Go home</p>
+    <a href="#" class="btn btn-primary">add to bag</a>
+  </div>
+</div>
+<div class="container">
+  <p>test date: <br><span>{{ todayDate }}</span> </p>
+</div>

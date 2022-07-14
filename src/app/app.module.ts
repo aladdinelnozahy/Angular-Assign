@@ -10,6 +10,7 @@ import { IndexComponent } from './Components/index/index.component';
 import { ContentComponent } from './Components/content/content.component';
 import { FormsModule } from '@angular/forms';
 import { ProductCardDirective } from './Directives/product-card.directive';
+import { OrderMasterComponent } from './Components/order-master/order-master.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { ProductCardDirective } from './Directives/product-card.directive';
     NavigationComponent,
     IndexComponent,
     ContentComponent,
-    ProductCardDirective
+    ProductCardDirective,
+    OrderMasterComponent
   ],
   imports: [
     BrowserModule,

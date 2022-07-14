@@ -1,0 +1,12 @@
+<div>
+  <label for="category">Select Category</label>
+  <select name="category" id="category" [(ngModel)]="SelectedCatID">
+    <option *ngFor="let category of categoryList" [value]="category.ID">{{ category.Name }}</option>
+  </select>
+</div>
+<!-- the ID of the category -->
+<!-- <p>{{ SelectedCatID }}</p> -->
+
+
+<!-- Child component -->
+<products></products>
