@@ -9,7 +9,10 @@ import { Component, OnInit } from '@angular/core';
 export class OrderMasterComponent implements OnInit {
 
   categoryList: ICategory[];
-  SelectedCatID:number=0
+  SelectedCatID:number= 0;
+
+  // property to recieve total price
+  recievedOrderTotalPrice:number=0;
 
   constructor() {
     this.categoryList=
@@ -24,5 +27,7 @@ export class OrderMasterComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  onTotalPriceChanged(totalPrice:number){
+    this.recievedOrderTotalPrice=totalPrice;
+  }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, OnChanges, SimpleChanges, EventEmitter, Output } from '@angular/core';
 import { DiscountOffers, IProduct } from 'src/app/Models/iproduct';
 import { ICategory } from 'src/app/Models/icategory';
 import { Store } from 'src/app/Models/store';
@@ -8,22 +8,23 @@ import { Store } from 'src/app/Models/store';
   templateUrl: './content.component.html',
   styleUrls: ['./content.component.scss']
 })
-export class ContentComponent implements OnInit {
+export class ContentComponent implements OnInit, OnChanges{
 
   todayDate:Date=new Date();
   prdListOfCat:IProduct[]=[];
-  receivedCatID:number=0
-
+  @Input() receivedCatID:number=0 //add Input property to handle with another component // parent to child
   ClientName: string = ""
   store1 = new Store('H&M', 'https://fakeimg.pl/250x100', []);
   ProductList: IProduct[];
   IsPurshased: Boolean = false;
   category:string="good";// test day 2
-
   // ICategory: ICategory[];
   Discount: DiscountOffers = DiscountOffers['10%'];
+  orderTotalPrice:number=0
 
+  @Output() totalPriceChanged:EventEmitter<number>; // child to parent
   constructor() {
+    this.totalPriceChanged=new EventEmitter<number>();
     this.ProductList = [
       {
         ID: 1,
@@ -132,6 +133,12 @@ export class ContentComponent implements OnInit {
 
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    this.getProductOfCat();
+  }
+  ngOnInit(): void {
+    // this.getProductOfCat();
+  }
   tracking(index:number,item:IProduct){
     return item.ID
   }
@@ -143,10 +150,16 @@ export class ContentComponent implements OnInit {
     this.prdListOfCat= this.ProductList.filter((product)=>product.CategoryID==this.receivedCatID);
 
   }
-  ngOnInit(): void {
-    this.getProductOfCat();
-  }
 
+  updateTotalPrice(prodPrice: number,itemsCount:any){
+    // this.orderTotalPrice+=(prodPrice*itemsCount)
+    // this.orderTotalPrice+=(prodPrice*parseInt(itemsCount))
+    // this.orderTotalPrice+=(prodPrice*Number(itemsCount))
+    // this.orderTotalPrice+=(prodPrice*itemsCount as number)
+    this.orderTotalPrice+=(prodPrice* +itemsCount);
+    // fire event
+    this.totalPriceChanged.emit(this.orderTotalPrice);             //emit() fire and change
+  }
 
   handleBuyAction() {
 

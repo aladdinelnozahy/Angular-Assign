@@ -9,4 +9,8 @@
 
 
 <!-- Child component -->
-<products></products>
+<products [receivedCatID]="SelectedCatID" (totalPriceChanged)="onTotalPriceChanged($event)"></products>
+<div class="bg-success test">
+  <!-- <p>{{ orderTotalPrice }}</p> -->
+  <p>Total Prive:{{ recievedOrderTotalPrice }}</p>
+</div>

@@ -44,6 +44,7 @@
       <th scope="col">Img</th>
       <th scope="col">Quantity</th>
       <th scope="col">Price</th>
+      <th scope="col">Count</th>
       <th scope="col">Buy</th>
     </tr>
   </thead>
@@ -64,16 +65,20 @@
           <span *ngIf="prod.Quantity==0">Out of Stock</span>
         </td>
         <td>{{ prod.Price | currency}}</td>
+        <td><input type="number" class="form-control"#itemsCount ></td>
+
         <!-- <td><button class="button bg-info" type="button" [disabled]="prod.Quantity==0">Buy</button> -->
-        <td><button class="button bg-info" type="button">Buy</button>
+          <!-- day 3  -->
+        <td><button class="button bg-info" type="button" (click)="updateTotalPrice(prod.Price,itemsCount.value)">Buy</button>
         </td>
       </tr>
 
     </ng-container>
   </tbody>
-
-
 </table>
+<!-- <div class="bg-success test">
+  <p>{{ orderTotalPrice }}</p>
+</div> -->
 <div class="card m-5 p-2 text-center container " productCard>
   <img class="m-auto" src="../../../assets/—Pngtree—tree and roots logo_6977755.png" alt="" style="width: 200px;">
 
