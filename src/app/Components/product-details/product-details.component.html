@@ -1,1 +1,17 @@
-<p>product-details works!</p>
+<div class="m-2">
+  <label class="m-2" for="search">Search Product</label>
+  <input class="m-2"type="text" class="form-control" name="search" #prodInput>
+  <button class="m-2" (click)="searchProduct(prodInput.value)">Search</button>
+</div>
+<div class="card m-2 p-3" style="width: 18rem;">
+  <img [src]="prod?.Img" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">{{ prod?.Name }}</h5>
+    <!-- //cjeck if null or not -->
+    <p class="card-text">Price:{{ prod?.Price }}</p>
+    <p class="card-text">Quantity:{{ prod?.Quantity }}</p>
+  </div>
+  <button class="btn btn-dark" (click)="goBack()">Go Back</button>
+
+</div>
+

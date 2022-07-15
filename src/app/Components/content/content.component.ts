@@ -211,6 +211,6 @@ export class ContentComponent implements OnInit, OnChanges{
   }
 
   openProductDetails(prodID:number){
-    this.router.navigate(['products',prodID])
+    this.router.navigate(['Products',prodID])
   }
 }

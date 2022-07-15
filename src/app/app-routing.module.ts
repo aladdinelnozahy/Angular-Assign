@@ -1,3 +1,5 @@
+import { ContentComponent } from './Components/content/content.component';
+import { ProductDetailsComponent } from './Components/product-details/product-details.component';
 import { MainLayoutComponent } from './Components/main-layout/main-layout.component';
 import { HomePageComponent } from './Components/home-page/home-page.component';
 import { ContactUsComponent } from './Components/contact-us/contact-us.component';
@@ -15,7 +17,11 @@ const routes: Routes = [
   {path:'Home',component:HomePageComponent},
   {path:'AboutUs',component:AboutUsComponent},
   {path:'ContactUs',component:ContactUsComponent},
+
   {path:'Products',component:OrderMasterComponent},
+  {path:'Products/:pid',component:ProductDetailsComponent},
+  {path:'Order',component:ContentComponent}
+
 
 ]},
 // {},

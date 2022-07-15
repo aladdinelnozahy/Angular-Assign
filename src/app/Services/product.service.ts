@@ -103,6 +103,11 @@ export class ProductService {
       return this.ProductList.filter(prod=>prod.CategoryID==CategoryID);
     }
   }
-
+  getProductByID(prdID:number):IProduct|undefined{
+    return this.ProductList.find(prod=>prod.ID==prdID)
+  }
+  searchProductByName(prodName:string):IProduct|undefined{
+    return  this.ProductList.find(prod=>prod.Name==prodName)
+  }
 }
 
