@@ -12,9 +12,9 @@
     <p class="card-text">Quantity:{{ prod?.Quantity }}</p>
   </div>
   <div class="btn-group">
-    <button class="btn btn-success" (click)="goPrev()">Go previous</button>
-    <button class="btn btn-primary" (click)="goBack()">Go Back</button>
-    <button class="btn btn-warning" (click)="goNext()">Go Next</button>
+    <button class="btn btn-success" (click)="goPrev()" [disabled]="currentProdID==prodIDList[0]" >Go previous</button>
+    <button class="btn btn-primary" (click)="goBack()"  >Go Back</button>
+    <button class="btn btn-warning" (click)="goNext()" [disabled]="currentProdID==prodIDList[prodIDList.length-1]"  >Go Next</button>
   </div>
 
 </div>
