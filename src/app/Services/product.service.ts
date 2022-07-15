@@ -109,5 +109,13 @@ export class ProductService {
   searchProductByName(prodName:string):IProduct|undefined{
     return  this.ProductList.find(prod=>prod.Name==prodName)
   }
+
+  getProducsIDList():number[]{
+    return this.ProductList.map(prod=>prod.ID)
+  }
+
+
+
+
 }
 
