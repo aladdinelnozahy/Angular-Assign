@@ -3,8 +3,9 @@ export interface IProduct {
   Name:string;
   Quantity:number;
   Price:number;
-  Img?:string; // optional 
+  Img?:string; // optional
   CategoryID: number;
+
 }
 // export enum
 export enum DiscountOffers {'No Discount', '10%', '15%'}

@@ -11,6 +11,11 @@ import { ContentComponent } from './Components/content/content.component';
 import { FormsModule } from '@angular/forms';
 import { ProductCardDirective } from './Directives/product-card.directive';
 import { OrderMasterComponent } from './Components/order-master/order-master.component';
+import { NotFoundPageComponent } from './Components/not-found-page/not-found-page.component';
+import { ContactUsComponent } from './Components/contact-us/contact-us.component';
+import { AboutUsComponent } from './Components/about-us/about-us.component';
+import { HomePageComponent } from './Components/home-page/home-page.component';
+import { MainLayoutComponent } from './Components/main-layout/main-layout.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +26,12 @@ import { OrderMasterComponent } from './Components/order-master/order-master.com
     IndexComponent,
     ContentComponent,
     ProductCardDirective,
-    OrderMasterComponent
+    OrderMasterComponent,
+    NotFoundPageComponent,
+    ContactUsComponent,
+    AboutUsComponent,
+    HomePageComponent,
+    MainLayoutComponent
   ],
   imports: [
     BrowserModule,
