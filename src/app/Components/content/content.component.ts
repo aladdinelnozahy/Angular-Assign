@@ -1,12 +1,15 @@
+import { ProductService } from './../../Services/product.service';
 import { Component, Input, OnInit, OnChanges, SimpleChanges, EventEmitter, Output } from '@angular/core';
 import { DiscountOffers, IProduct } from 'src/app/Models/iproduct';
 import { ICategory } from 'src/app/Models/icategory';
 import { Store } from 'src/app/Models/store';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'products',
   templateUrl: './content.component.html',
-  styleUrls: ['./content.component.scss']
+  styleUrls: ['./content.component.scss'],
+  // providers:[ProductService]
 })
 export class ContentComponent implements OnInit, OnChanges{
   ProductList: IProduct[];
@@ -26,8 +29,8 @@ export class ContentComponent implements OnInit, OnChanges{
   orderItemPrice:number=0
 
   @Input() receivedCatID:number=0 //add Input property to handle with another component // parent to child
-  @Output() totalPriceChanged:EventEmitter<number>; // child to parent
-  
+  @Output() totalPriceChanged:EventEmitter<{}>; // child to parent
+
   // @Output() nameChanged:EventEmitter<string>; // child to parent
   // @Output() totalPriceChanged:EventEmitter<number>; // child to parent
   // @Output() totalPriceChanged:EventEmitter<number>; // child to parent
@@ -36,90 +39,93 @@ export class ContentComponent implements OnInit, OnChanges{
 
 
 
-  constructor() {
-    this.totalPriceChanged=new EventEmitter<number>();
-    this.ProductList = [
-      {
-        ID: 1,
-        Name: 'fan',
-        Quantity: 0,
-        Price: 200,
-        Img: 'https://fakeimg.pl/250x100',
-        CategoryID: 1
-      },
-      {
-        ID: 2,
-        Name: 'TV',
-        Quantity: 1,
-        Price: 4000,
-        Img: 'https://fakeimg.pl/250x100',
-        CategoryID: 1
-      },
-      {
-        ID: 3,
-        Name: 'BMW',
-        Quantity: 3,
-        Price: 50,
-        Img: 'https://fakeimg.pl/250x100',
-        CategoryID: 2
-      },
-      {
-        ID: 4,
-        Name: 'ferrari',
-        Quantity: 8,
-        Price: 100,
-        Img: 'https://fakeimg.pl/250x100',
-        CategoryID: 2
-      },
-      {
-        ID: 5,
-        Name: 'T-Shirt',
-        Quantity: 8,
-        Price: 10,
-        Img: 'https://fakeimg.pl/250x100',
-        CategoryID: 3
-      },
-      {
-        ID: 6,
-        Name: 'Jeans',
-        Quantity: 15,
-        Price: 80,
-        Img: 'https://fakeimg.pl/250x100',
-        CategoryID: 3
-      },
-      {
-        ID: 7,
-        Name: 'Braclet',
-        Quantity: 8,
-        Price: 10,
-        Img: 'https://fakeimg.pl/250x100',
-        CategoryID: 4
-      },
-      {
-        ID: 8,
-        Name: 'necklace ',
-        Quantity: 1,
-        Price: 10,
-        Img: 'https://fakeimg.pl/250x100',
-        CategoryID: 4
-      },
-      {
-        ID: 9,
-        Name: 'Baby Bottles ',
-        Quantity: 1,
-        Price: 10,
-        Img: 'https://fakeimg.pl/250x100',
-        CategoryID: 5
-      },
-      {
-        ID: 10,
-        Name: 'Sleep suites ',
-        Quantity: 0,
-        Price: 10,
-        Img: 'https://fakeimg.pl/250x100',
-        CategoryID: 5
-      }
-    ]
+  constructor(private prodService:ProductService, private router:Router) {
+  // constructor() {
+      this.totalPriceChanged=new EventEmitter<{}>();
+    this.ProductList = prodService.getAllProducts();
+
+    // [
+    //   {
+    //     ID: 1,
+    //     Name: 'fan',
+    //     Quantity: 0,
+    //     Price: 200,
+    //     Img: 'https://fakeimg.pl/250x100',
+    //     CategoryID: 1
+    //   },
+    //   {
+    //     ID: 2,
+    //     Name: 'TV',
+    //     Quantity: 1,
+    //     Price: 4000,
+    //     Img: 'https://fakeimg.pl/250x100',
+    //     CategoryID: 1
+    //   },
+    //   {
+    //     ID: 3,
+    //     Name: 'BMW',
+    //     Quantity: 3,
+    //     Price: 50,
+    //     Img: 'https://fakeimg.pl/250x100',
+    //     CategoryID: 2
+    //   },
+    //   {
+    //     ID: 4,
+    //     Name: 'ferrari',
+    //     Quantity: 8,
+    //     Price: 100,
+    //     Img: 'https://fakeimg.pl/250x100',
+    //     CategoryID: 2
+    //   },
+    //   {
+    //     ID: 5,
+    //     Name: 'T-Shirt',
+    //     Quantity: 8,
+    //     Price: 10,
+    //     Img: 'https://fakeimg.pl/250x100',
+    //     CategoryID: 3
+    //   },
+    //   {
+    //     ID: 6,
+    //     Name: 'Jeans',
+    //     Quantity: 15,
+    //     Price: 80,
+    //     Img: 'https://fakeimg.pl/250x100',
+    //     CategoryID: 3
+    //   },
+    //   {
+    //     ID: 7,
+    //     Name: 'Braclet',
+    //     Quantity: 8,
+    //     Price: 10,
+    //     Img: 'https://fakeimg.pl/250x100',
+    //     CategoryID: 4
+    //   },
+    //   {
+    //     ID: 8,
+    //     Name: 'necklace ',
+    //     Quantity: 1,
+    //     Price: 10,
+    //     Img: 'https://fakeimg.pl/250x100',
+    //     CategoryID: 4
+    //   },
+    //   {
+    //     ID: 9,
+    //     Name: 'Baby Bottles ',
+    //     Quantity: 1,
+    //     Price: 10,
+    //     Img: 'https://fakeimg.pl/250x100',
+    //     CategoryID: 5
+    //   },
+    //   {
+    //     ID: 10,
+    //     Name: 'Sleep suites ',
+    //     Quantity: 0,
+    //     Price: 10,
+    //     Img: 'https://fakeimg.pl/250x100',
+    //     CategoryID: 5
+    //   }
+    // ]
     // this.ICategory=
     // [
     //   {
@@ -171,29 +177,32 @@ export class ContentComponent implements OnInit, OnChanges{
     // product.Quantity=product.Quantity-username.value;
     this.buybroduct=product
   }
-  updateTotalPrice(prodPrice: number,itemsCount:number,itemName:string, product:any){
+  updateTotalPrice(itemsCount:any,product:IProduct){
     // this.orderTotalPrice+=(prodPrice*itemsCount)
     // this.orderTotalPrice+=(prodPrice*parseInt(itemsCount))
     // this.orderTotalPrice+=(prodPrice*Number(itemsCount))
     // this.orderTotalPrice+=(prodPrice*itemsCount as number)
     console.log(product);
-    this.orderTotalPrice+=(prodPrice* +itemsCount);
+    this.orderTotalPrice+=(product.Price* +itemsCount);
+
     // this.orderItemPrice=prodPrice;
     // this.orderItemCount=itemsCount;
     // this.orderItemName=`itemName
-    this.orderItemName=itemName;
-    this.orderItemCount=itemsCount;
-    this.orderItemPrice=prodPrice;
+    this.orderItemName=product.Name;
+    this.orderItemCount=parseInt(itemsCount);
+    this.orderItemPrice=product.Price;
 
-    var prod:any={
+    let prod:any={
       Name: product.Name,
       Price: product.Price,
       Count: itemsCount,
       TotalPrice:this.orderTotalPrice
 
     }
-    this.totalPriceChanged.emit(this.orderTotalPrice);             //emit() fire and change
-    // this.totalPriceChanged.emit(this.orderTotalPrice);             //emit() fire and change
+    this.totalPriceChanged.emit(prod);             //emit() fire and change
+
+    // this.totalPriceChanged.emit({...product,...{totalPrice:this.orderTotalPrice}});             //emit() fire and change
+    // this.totalPriceChanged.emit(this.orderTotalPrice);
   }
 
   handleBuyAction() {
@@ -201,5 +210,7 @@ export class ContentComponent implements OnInit, OnChanges{
     this.IsPurshased = true
   }
 
-
+  openProductDetails(prodID:number){
+    this.router.navigate(['products',prodID])
+  }
 }

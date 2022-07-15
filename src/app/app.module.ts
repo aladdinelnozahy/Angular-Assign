@@ -16,6 +16,7 @@ import { ContactUsComponent } from './Components/contact-us/contact-us.component
 import { AboutUsComponent } from './Components/about-us/about-us.component';
 import { HomePageComponent } from './Components/home-page/home-page.component';
 import { MainLayoutComponent } from './Components/main-layout/main-layout.component';
+import { ProductDetailsComponent } from './Components/product-details/product-details.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { MainLayoutComponent } from './Components/main-layout/main-layout.compon
     ContactUsComponent,
     AboutUsComponent,
     HomePageComponent,
-    MainLayoutComponent
+    MainLayoutComponent,
+    ProductDetailsComponent
   ],
   imports: [
     BrowserModule,

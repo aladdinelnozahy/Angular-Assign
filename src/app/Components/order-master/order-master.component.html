@@ -29,15 +29,17 @@
       </tr>
     </thead>
     <tbody>
-        <ng-container >
+        <ng-container *ngFor="let prod of prodListOfCat">
         <tr >
-          <td> Item Name:{{ recievedOrderName }}</td>
-          <td> Item Price:{{ recievedOrderPrice }}</td>
-          <td> Item Count:{{ recievedOrderCount }}</td>
-          <td><p>Total Price:{{ recievedOrderTotalPrice }}</p> </td>
+          <!-- {{prod | json}} -->
+          <td> {{ prod.Name }}</td>
+          <td> {{ prod.Price }}</td>
+          <td> {{ prod.Count }}</td>
+          <td> {{prod.Count*prod.Price}}</td>
         </tr>
-
       </ng-container>
+      <p>Total Price: {{recievedOrderTotalPrice }}</p>
+
     </tbody>
   </table>
 

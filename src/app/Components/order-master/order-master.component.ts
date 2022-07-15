@@ -16,7 +16,8 @@ export class OrderMasterComponent implements OnInit, AfterViewInit {
   // property to recieve total price
   recievedOrderTotalPrice:number=0;
 
-  prodListOfCat:IProduct[]=[];
+  // prodListOfCat:IProduct[]= [];
+  prodListOfCat:any[]= [];
 
   recievedOrderName:string="";
 
@@ -63,12 +64,12 @@ export class OrderMasterComponent implements OnInit, AfterViewInit {
 
 
     onTotalPriceChanged(product:any){
-      this.recievedOrderTotalPrice=product;
+      this.recievedOrderTotalPrice+= (product.Price* +product.Count);
 
       this.prodListOfCat.push(product)
-    // this.recievedOrderName=itemName;
-    // this.recievedOrderCount=itemCount;
-    // this.recievedOrderPrice=itemPrice;
+      // this.recievedOrderName=product.Name;
+      // this.recievedOrderCount=product.Count;
+      // this.recievedOrderPrice=product.Price;
   }
   getNewArrOfProd(){
     console.log(this.contentComponentRef.prdListOfCat)

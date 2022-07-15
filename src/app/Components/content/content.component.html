@@ -44,6 +44,7 @@
       <th scope="col">Quantity</th>
       <th scope="col">Price</th>
       <th scope="col">Count</th>
+      <th scope="col">Details</th>
       <th scope="col">Buy</th>
     </tr>
   </thead>
@@ -64,12 +65,13 @@
           <span *ngIf="prod.Quantity==0">Out of Stock</span>
         </td>
         <td>{{ prod.Price | currency}}</td>
+        <td><button class="btn btn-success button bg-success" type="button" (click)="openProductDetails(prod.ID)">Details</button></td>
         <td><input type="number" class="form-control" min="0" max="{{ prod.Quantity }}" #itemsCount></td>
 
         <!-- <td><button class="button bg-info" type="button" [disabled]="prod.Quantity==0">Buy</button> -->
         <!-- day 3  -->
-        <td><button class="button bg-info" type="button"
-            (click)="updateTotalPrice(prod.Price,prod.Quantity,itemsCount.value,prod)">Buy</button>
+        <td><button class="btn btn-info" type="button"
+            (click)="updateTotalPrice(itemsCount.value ,prod)">Buy</button>
         </td>
       </tr>
 
