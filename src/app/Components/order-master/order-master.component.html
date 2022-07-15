@@ -14,10 +14,52 @@
 
 <!-- Child component -->
 <products [receivedCatID]="SelectedCatID" (totalPriceChanged)="onTotalPriceChanged($event)"></products>
+
+
+
 <div class="bg-success test">
   <!-- <p>{{ orderTotalPrice }}</p> -->
-  <p>Total Prive:{{ recievedOrderTotalPrice }}</p>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Price</th>
+        <th scope="col">Count</th>
+        <th scope="col">Total Price</th>
+      </tr>
+    </thead>
+    <tbody>
+        <ng-container >
+        <tr >
+          <td> Item Name:{{ recievedOrderName }}</td>
+          <td> Item Price:{{ recievedOrderPrice }}</td>
+          <td> Item Count:{{ recievedOrderCount }}</td>
+          <td><p>Total Price:{{ recievedOrderTotalPrice }}</p> </td>
+        </tr>
+
+      </ng-container>
+    </tbody>
+  </table>
+
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <!-- test view child  -->
 

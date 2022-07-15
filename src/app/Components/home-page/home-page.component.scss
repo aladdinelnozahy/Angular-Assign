@@ -1,0 +1,238 @@
+@mixin nav-foot {
+  background-color: $background-color-dark;
+	color: $lightgray;
+}
+
+
+$lightgray: #cbcbcb;
+$darkgray: #858585;
+$white: white;
+$golden: #cea135;
+$darkblue: #11122b;
+$font-family_1: 'Roboto', sans-serif;
+$font-family_2: 'Roboto Slab', serif;
+$font-family_3: 'Ubuntu Condensed', sans-serif;
+$background-color-dark: #11122b;
+$background-color-light: #cea135;
+
+body {
+	margin: 0px;
+	font-family: $font-family_1;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: $font-family_2;
+}
+
+.navigation-wrapper {
+	@include nav-foot;
+  height: 190px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 60px 100px;
+	  .left-column {
+		display: flex;
+		align-items: center;
+		 .icon {
+			margin-right: 15px;
+			i {
+				font-size: 2em;
+		}
+	}
+		.contact-hours-wrapper {
+			display: grid;
+			grid-template-columns: 1fr;
+			grid-gap: 10px;
+			  .hours {
+				font-family: $font-family_3;
+				color: $darkgray;
+				font-size: 0.8em;
+			}
+		}
+	}
+	.center-column {
+		display: grid;
+		grid-template-columns: 1fr;
+		grid-gap: 42px;
+		width: 500px;
+		  .banner-image {
+			display: flex;
+			justify-content: center;
+			img {
+				width: 216px;
+				height: 100%;
+			}
+		}
+	}
+	.right-column {
+		display: flex;
+		align-items: center;
+		.address-wrapper {
+			font-family: $font-family_3;
+			text-align: right;
+			a {
+				color: $darkgray;
+				text-decoration: none;
+				font-size: 0.9em;
+				transition: 0.5s;
+				&:hover {
+					color: $golden;
+			}
+		}
+	}
+		.contact-icon {
+			margin-left: 15px;
+			font-size: 2em;
+			  a {
+				color: $lightgray;
+				transition: 0.5s;
+				&:hover {
+					color: $golden;
+				}
+			}
+		}
+	}
+}
+.links-wrapper {
+	  .nav-link {
+		a {
+			font-family: $font-family_3;
+			color: $white;
+			text-decoration: none;
+			transition: 0.5s;
+			&:hover {
+				color: $golden;
+				letter-spacing: 2px;
+			}
+		}
+		width: 70px;
+		text-align: center;
+	}
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.hero-section {
+	// background-image: url(../images/backgrounds/fries-hero-bg.jpg);
+	padding: 100px;
+	height: 300px;
+	background-attachment: fixed;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	  .top-heading {
+		padding: 1px 20px;
+		background-color: $background-color-dark;
+		color: $lightgray;
+		width: 290px;
+		border-radius: 2px;
+	}
+	.bottom-heading {
+		background-color: $background-color-light;
+		color: $darkblue;
+		padding: 1px 20px;
+		margin-top: 15px;
+		width: 107px;
+		border-radius: 2px;
+	}
+}
+.features-section {
+	height: 400px;
+	// background-image: url(../images/backgrounds/fries-multiply-bg.jpg);
+	background-color: $background-color-light;
+	border-top: 10px solid white;
+	color: $darkblue;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-family: $font-family_3;
+	box-shadow: inset 0px -26px 79px -8px rgba(0, 0, 0, 0.58);
+	  .columns-wrapper {
+     width: 1000px;
+     display: flex;
+     justify-content: space-between;
+       .column {
+        padding: 20px;
+        margin: 42px;
+        text-align: center;
+        border-bottom: 5px solid transparent;
+        border-radius: 10px;
+        transition: 1s;
+        &:hover {
+          border-bottom: 5px solid #11122b;
+        }
+        &:nth-child(1) {
+          font-size: 3em;
+        }
+        &:nth-child(2) {
+          font-size: 1.5em;
+          font-weight: 900;
+          height: 50px;
+          transition: 1s;
+            &:hover {
+            letter-spacing: 1px;
+            }
+          }
+        &:nth-child(3) {
+          letter-spacing: 2px;
+			}
+		}
+	}
+}
+.footer {
+  @include nav-foot;
+	font-family: $font-family_3;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	height: 400px;
+	margin-top: -4px;
+	  .logo-footer {
+		 img {
+			width: 180px;
+			height: 100%;
+			opacity: 0.5;
+		}
+	}
+	.footer-phone-hours {
+		span {
+			margin-left: 10px;
+			margin-right: 10px;
+			font-size: 1em;
+			letter-spacing: 2px;
+		}
+		  .hours {
+			font-size: 0.8em;
+			color: $golden;
+			text-transform: uppercase;
+		}
+	}
+	.links-wrapper {
+		margin-top: 40px;
+		margin-bottom: 40px;
+		width: 400px;
+	}
+	.social-media-icons-wrapper {
+		margin-top: 40px;
+		margin-bottom: 40px;
+		width: 300px;
+		display: flex;
+		justify-content: space-around;
+		a {
+			font-size: 1.5em;
+			color: $lightgray;
+			transition: 0.5s;
+			&:hover {
+				color: $golden;
+			}
+		}
+	}
+	.copyright-wrapper {
+		margin-bottom: 42px;
+		font-size: 0.7em;
+		color: $darkgray;
+	}
+}

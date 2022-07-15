@@ -1,3 +1,4 @@
+import { IProduct } from 'src/app/Models/iproduct';
 import { ContentComponent } from './../content/content.component';
 import { ICategory } from './../../Models/icategory';
 import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
@@ -14,6 +15,16 @@ export class OrderMasterComponent implements OnInit, AfterViewInit {
 
   // property to recieve total price
   recievedOrderTotalPrice:number=0;
+
+  prodListOfCat:IProduct[]=[];
+
+  recievedOrderName:string="";
+
+  recievedOrderPrice:number=0;
+
+  recievedOrderCount:number=0;
+
+
 
   // save navigation operator (?)> means clientName is optional may has val or not
   //--------! >> non null assertion operation >> don't have
@@ -41,13 +52,23 @@ export class OrderMasterComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     // if(this.clientName)
     this.clientName.nativeElement.value="Value added from TS"
-    // console.log(this.contentComponentRef.prdListOfCat)
+    console.log(this.contentComponentRef.prdListOfCat)
   }
 
-  ngOnInit(): void {
-  }
-  onTotalPriceChanged(totalPrice:number){
-    this.recievedOrderTotalPrice=totalPrice;
+  ngOnInit(): void {}
+
+
+  // ,itemName:string,itemCount:number,itemPrice:number
+  // onTotalPriceChanged(totalPrice:number){
+
+
+    onTotalPriceChanged(product:any){
+      this.recievedOrderTotalPrice=product;
+
+      this.prodListOfCat.push(product)
+    // this.recievedOrderName=itemName;
+    // this.recievedOrderCount=itemCount;
+    // this.recievedOrderPrice=itemPrice;
   }
   getNewArrOfProd(){
     console.log(this.contentComponentRef.prdListOfCat)

@@ -1,4 +1,3 @@
-
 <!-- Day 1 -->
 
 <!-- <h1>Store : {{ store1.name }}</h1>
@@ -30,7 +29,7 @@
   </select>
  -->
 
-  <!-- <input type="text" className="form-control" name="category" id="category" [(ngModel)]="ICategory">
+<!-- <input type="text" className="form-control" name="category" id="category" [(ngModel)]="ICategory">
   <h2>{{ ICategory }}</h2> -->
 
 
@@ -50,9 +49,9 @@
   </thead>
   <tbody>
     <!-- <ng-container *ngFor="let prod of ProductList,let i=index, trackBy:tracking "> -->
-      <!-- day 3 filter product by ID -->
-      <ng-container *ngFor="let prod of prdListOfCat ,let i=index, trackBy:tracking ">
-        <!-- using property binding -->
+    <!-- day 3 filter product by ID -->
+    <ng-container *ngFor="let prod of prdListOfCat ,let i=index, trackBy:tracking ">
+      <!-- using property binding -->
       <!-- [hidden]="prod.Quantity==0"     -->
       <tr *ngIf="prod.Quantity>0" [class.bg-danger]="prod.Quantity==1" [class.text-light]="prod.Quantity==1"
         [style.background-color]="(prod.Quantity==3)?'lightyellow':'light'">
@@ -65,11 +64,12 @@
           <span *ngIf="prod.Quantity==0">Out of Stock</span>
         </td>
         <td>{{ prod.Price | currency}}</td>
-        <td><input type="number" class="form-control"#itemsCount ></td>
+        <td><input type="number" class="form-control" min="0" max="{{ prod.Quantity }}" #itemsCount></td>
 
         <!-- <td><button class="button bg-info" type="button" [disabled]="prod.Quantity==0">Buy</button> -->
-          <!-- day 3  -->
-        <td><button class="button bg-info" type="button" (click)="updateTotalPrice(prod.Price,itemsCount.value)">Buy</button>
+        <!-- day 3  -->
+        <td><button class="button bg-info" type="button"
+            (click)="updateTotalPrice(prod.Price,prod.Quantity,itemsCount.value,prod)">Buy</button>
         </td>
       </tr>
 
@@ -79,7 +79,7 @@
 <!-- <div class="bg-success test">
   <p>{{ orderTotalPrice }}</p>
 </div> -->
-<div class="card m-5 p-2 text-center container " productCard>
+<!-- <div class="card m-5 p-2 text-center container " productCard>
   <img class="m-auto" src="../../../assets/—Pngtree—tree and roots logo_6977755.png" alt="" style="width: 200px;">
 
   <div class="card-body ">
@@ -88,7 +88,7 @@
     <p class="card-text">Go home</p>
     <a href="#" class="btn btn-primary">add to bag</a>
   </div>
-</div>
-<div class="container">
+</div> -->
+<!-- <div class="container">
   <p>test date: <br><span>{{ todayDate }}</span> </p>
-</div>
+</div> -->

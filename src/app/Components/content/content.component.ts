@@ -9,20 +9,33 @@ import { Store } from 'src/app/Models/store';
   styleUrls: ['./content.component.scss']
 })
 export class ContentComponent implements OnInit, OnChanges{
-
+  ProductList: IProduct[];
+  // ICategory: ICategory[];
+  buybroduct:any={}
   todayDate:Date=new Date();
   prdListOfCat:IProduct[]=[];
-  @Input() receivedCatID:number=0 //add Input property to handle with another component // parent to child
   ClientName: string = ""
   store1 = new Store('H&M', 'https://fakeimg.pl/250x100', []);
-  ProductList: IProduct[];
   IsPurshased: Boolean = false;
   category:string="good";// test day 2
   // ICategory: ICategory[];
   Discount: DiscountOffers = DiscountOffers['10%'];
   orderTotalPrice:number=0
+  orderItemName:string=""
+  orderItemCount:number=0
+  orderItemPrice:number=0
 
+  @Input() receivedCatID:number=0 //add Input property to handle with another component // parent to child
   @Output() totalPriceChanged:EventEmitter<number>; // child to parent
+  
+  // @Output() nameChanged:EventEmitter<string>; // child to parent
+  // @Output() totalPriceChanged:EventEmitter<number>; // child to parent
+  // @Output() totalPriceChanged:EventEmitter<number>; // child to parent
+
+
+
+
+
   constructor() {
     this.totalPriceChanged=new EventEmitter<number>();
     this.ProductList = [
@@ -132,7 +145,14 @@ export class ContentComponent implements OnInit, OnChanges{
     // ]
 
   }
+  private getProductOfCat(){
+    if(this.receivedCatID==0){
+      this.prdListOfCat=Array.from(this.ProductList)
+      return;
+    }
+    this.prdListOfCat= this.ProductList.filter((product)=>product.CategoryID==this.receivedCatID);
 
+  }
   ngOnChanges(changes: SimpleChanges): void {
     this.getProductOfCat();
   }
@@ -142,23 +162,38 @@ export class ContentComponent implements OnInit, OnChanges{
   tracking(index:number,item:IProduct){
     return item.ID
   }
-  private getProductOfCat(){
-    if(this.receivedCatID==0){
-      this.prdListOfCat=Array.from(this.ProductList)
-      return;
-    }
-    this.prdListOfCat= this.ProductList.filter((product)=>product.CategoryID==this.receivedCatID);
 
+  clear(){
+    this.ProductList= this.prdListOfCat;
   }
-
-  updateTotalPrice(prodPrice: number,itemsCount:any){
+  buy(product:any){
+   // console.log(username);
+    // product.Quantity=product.Quantity-username.value;
+    this.buybroduct=product
+  }
+  updateTotalPrice(prodPrice: number,itemsCount:number,itemName:string, product:any){
     // this.orderTotalPrice+=(prodPrice*itemsCount)
     // this.orderTotalPrice+=(prodPrice*parseInt(itemsCount))
     // this.orderTotalPrice+=(prodPrice*Number(itemsCount))
     // this.orderTotalPrice+=(prodPrice*itemsCount as number)
+    console.log(product);
     this.orderTotalPrice+=(prodPrice* +itemsCount);
-    // fire event
+    // this.orderItemPrice=prodPrice;
+    // this.orderItemCount=itemsCount;
+    // this.orderItemName=`itemName
+    this.orderItemName=itemName;
+    this.orderItemCount=itemsCount;
+    this.orderItemPrice=prodPrice;
+
+    var prod:any={
+      Name: product.Name,
+      Price: product.Price,
+      Count: itemsCount,
+      TotalPrice:this.orderTotalPrice
+
+    }
     this.totalPriceChanged.emit(this.orderTotalPrice);             //emit() fire and change
+    // this.totalPriceChanged.emit(this.orderTotalPrice);             //emit() fire and change
   }
 
   handleBuyAction() {
