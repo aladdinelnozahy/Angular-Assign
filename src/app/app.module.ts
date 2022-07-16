@@ -17,6 +17,9 @@ import { AboutUsComponent } from './Components/about-us/about-us.component';
 import { HomePageComponent } from './Components/home-page/home-page.component';
 import { MainLayoutComponent } from './Components/main-layout/main-layout.component';
 import { ProductDetailsComponent } from './Components/product-details/product-details.component';
+import { HttpClientModule } from '@angular/common/http';
+
+
 
 @NgModule({
   declarations: [
@@ -38,7 +41,8 @@ import { ProductDetailsComponent } from './Components/product-details/product-de
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,3 +1,4 @@
+import { ProductsService } from './../../Services/products.service';
 import { ProductService } from './../../Services/product.service';
 import { Component, Input, OnInit, OnChanges, SimpleChanges, EventEmitter, Output } from '@angular/core';
 import { DiscountOffers, IProduct } from 'src/app/Models/iproduct';
@@ -39,7 +40,7 @@ export class ContentComponent implements OnInit, OnChanges{
 
 
 
-  constructor(private prodService:ProductService, private router:Router) {
+  constructor(private prodService:ProductService, private router:Router,private prdAPIservice:ProductsService) {
   // constructor() {
       this.totalPriceChanged=new EventEmitter<{}>();
     this.ProductList = prodService.getAllProducts();
@@ -53,78 +54,78 @@ export class ContentComponent implements OnInit, OnChanges{
     //     Img: 'https://fakeimg.pl/250x100',
     //     CategoryID: 1
     //   },
-    //   {
-    //     ID: 2,
-    //     Name: 'TV',
-    //     Quantity: 1,
-    //     Price: 4000,
-    //     Img: 'https://fakeimg.pl/250x100',
-    //     CategoryID: 1
-    //   },
-    //   {
-    //     ID: 3,
-    //     Name: 'BMW',
-    //     Quantity: 3,
-    //     Price: 50,
-    //     Img: 'https://fakeimg.pl/250x100',
-    //     CategoryID: 2
-    //   },
-    //   {
-    //     ID: 4,
-    //     Name: 'ferrari',
-    //     Quantity: 8,
-    //     Price: 100,
-    //     Img: 'https://fakeimg.pl/250x100',
-    //     CategoryID: 2
-    //   },
-    //   {
-    //     ID: 5,
-    //     Name: 'T-Shirt',
-    //     Quantity: 8,
-    //     Price: 10,
-    //     Img: 'https://fakeimg.pl/250x100',
-    //     CategoryID: 3
-    //   },
-    //   {
-    //     ID: 6,
-    //     Name: 'Jeans',
-    //     Quantity: 15,
-    //     Price: 80,
-    //     Img: 'https://fakeimg.pl/250x100',
-    //     CategoryID: 3
-    //   },
-    //   {
-    //     ID: 7,
-    //     Name: 'Braclet',
-    //     Quantity: 8,
-    //     Price: 10,
-    //     Img: 'https://fakeimg.pl/250x100',
-    //     CategoryID: 4
-    //   },
-    //   {
-    //     ID: 8,
-    //     Name: 'necklace ',
-    //     Quantity: 1,
-    //     Price: 10,
-    //     Img: 'https://fakeimg.pl/250x100',
-    //     CategoryID: 4
-    //   },
-    //   {
-    //     ID: 9,
-    //     Name: 'Baby Bottles ',
-    //     Quantity: 1,
-    //     Price: 10,
-    //     Img: 'https://fakeimg.pl/250x100',
-    //     CategoryID: 5
-    //   },
-    //   {
-    //     ID: 10,
-    //     Name: 'Sleep suites ',
-    //     Quantity: 0,
-    //     Price: 10,
-    //     Img: 'https://fakeimg.pl/250x100',
-    //     CategoryID: 5
-    //   }
+      // {
+      //   ID: 2,
+      //   Name: 'TV',
+      //   Quantity: 1,
+      //   Price: 4000,
+      //   Img: 'https://fakeimg.pl/250x100',
+      //   CategoryID: 1
+      // },
+      // {
+      //   ID: 3,
+      //   Name: 'BMW',
+      //   Quantity: 3,
+      //   Price: 50,
+      //   Img: 'https://fakeimg.pl/250x100',
+      //   CategoryID: 2
+      // },
+      // {
+      //   ID: 4,
+      //   Name: 'ferrari',
+      //   Quantity: 8,
+      //   Price: 100,
+      //   Img: 'https://fakeimg.pl/250x100',
+      //   CategoryID: 2
+      // },
+      // {
+      //   ID: 5,
+      //   Name: 'T-Shirt',
+      //   Quantity: 8,
+      //   Price: 10,
+      //   Img: 'https://fakeimg.pl/250x100',
+      //   CategoryID: 3
+      // },
+      // {
+      //   ID: 6,
+      //   Name: 'Jeans',
+      //   Quantity: 15,
+      //   Price: 80,
+      //   Img: 'https://fakeimg.pl/250x100',
+      //   CategoryID: 3
+      // },
+      // {
+      //   ID: 7,
+      //   Name: 'Braclet',
+      //   Quantity: 8,
+      //   Price: 10,
+      //   Img: 'https://fakeimg.pl/250x100',
+      //   CategoryID: 4
+      // },
+      // {
+      //   ID: 8,
+      //   Name: 'necklace ',
+      //   Quantity: 1,
+      //   Price: 10,
+      //   Img: 'https://fakeimg.pl/250x100',
+      //   CategoryID: 4
+      // },
+      // {
+      //   ID: 9,
+      //   Name: 'Baby Bottles ',
+      //   Quantity: 1,
+      //   Price: 10,
+      //   Img: 'https://fakeimg.pl/250x100',
+      //   CategoryID: 5
+      // },
+      // {
+      //   ID: 10,
+      //   Name: 'Sleep suites ',
+      //   Quantity: 0,
+      //   Price: 10,
+      //   Img: 'https://fakeimg.pl/250x100',
+      //   CategoryID: 5
+      // }
     // ]
     // this.ICategory=
     // [
@@ -160,10 +161,19 @@ export class ContentComponent implements OnInit, OnChanges{
 
   }
   ngOnChanges(changes: SimpleChanges): void {
-    this.getProductOfCat();
+
+    // this.getProductOfCat();
+    // day 5
+    this.prdAPIservice.getProductsByCatID(this.receivedCatID).subscribe(data=>{
+      this.prdListOfCat=data;
+    })
   }
   ngOnInit(): void {
     // this.getProductOfCat();
+    // day 5
+    this.prdAPIservice.getAllProducts().subscribe(prdList=>{
+      this.prdListOfCat=prdList;
+    })
   }
   tracking(index:number,item:IProduct){
     return item.ID
@@ -212,5 +222,8 @@ export class ContentComponent implements OnInit, OnChanges{
 
   openProductDetails(prodID:number){
     this.router.navigate(['Products',prodID])
+  }
+  addProduct(prod:IProduct){
+    this.ProductList.push(prod)
   }
 }

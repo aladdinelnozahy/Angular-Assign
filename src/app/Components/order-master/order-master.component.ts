@@ -1,3 +1,4 @@
+import { CategoryService } from './../../Services/category.service';
 import { IProduct } from 'src/app/Models/iproduct';
 import { ContentComponent } from './../content/content.component';
 import { ICategory } from './../../Models/icategory';
@@ -40,7 +41,7 @@ export class OrderMasterComponent implements OnInit, AfterViewInit {
   // @ViewChild('clientName') clientName:ElementRef|null=null;
   // @ViewChild('clientName') clientName:ElementRef|undefined=undefined;
 
-  constructor() {
+  constructor(private catAPIService:CategoryService) {
     this.categoryList=
     [
       {ID: 1, Name: 'Electro'},
@@ -56,12 +57,14 @@ export class OrderMasterComponent implements OnInit, AfterViewInit {
     console.log(this.contentComponentRef.prdListOfCat)
   }
 
-  ngOnInit(): void {}
-
+  ngOnInit(): void {
+    this.catAPIService.getAllCategories().subscribe(catList=>{
+      this.categoryList=catList
+    })
+  }
 
   // ,itemName:string,itemCount:number,itemPrice:number
   // onTotalPriceChanged(totalPrice:number){
-
 
     onTotalPriceChanged(product:any){
       this.recievedOrderTotalPrice+= (product.Price* +product.Count);
@@ -73,6 +76,7 @@ export class OrderMasterComponent implements OnInit, AfterViewInit {
   }
   getNewArrOfProd(){
     console.log(this.contentComponentRef.prdListOfCat)
+    this.contentComponentRef.prdListOfCat
 
   }
 }
